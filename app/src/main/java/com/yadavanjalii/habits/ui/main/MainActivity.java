@@ -1,30 +1,28 @@
-package com.yadavanjalii.habits;
+package com.yadavanjalii.habits.ui.main;
 
 import static android.view.animation.AnimationUtils.loadAnimation;
 
 import android.content.Intent;
-import android.os.Bundle;
 import android.os.Handler;
 import android.view.animation.Animation;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import com.yadavanjalii.habits.databinding.ActivityMainBinding;
-import com.yadavanjalii.habits.home.HomeActivity;
+import com.yadavanjalii.habits.R;
+import com.yadavanjalii.habits.databinding.MainClass;
+import com.yadavanjalii.habits.ui.base.BaseActivity;
+import com.yadavanjalii.habits.ui.home.HomeActivity;
 
 import java.util.Objects;
 
-public class MainActivity extends AppCompatActivity {
+import dagger.hilt.android.AndroidEntryPoint;
 
-    ActivityMainBinding binding;
+@AndroidEntryPoint
+public class MainActivity extends BaseActivity<MainClass> {
+
     Animation rotateAnimation;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        binding = ActivityMainBinding.inflate(getLayoutInflater());
-        setContentView(binding.getRoot());
-
+    protected void onStart() {
+        super.onStart();
         Objects.requireNonNull(getSupportActionBar()).hide();
 
         animateRocket();
@@ -33,7 +31,12 @@ public class MainActivity extends AppCompatActivity {
         handler.postDelayed(() -> {
             startActivity(new Intent(this, HomeActivity.class));
             finish();
-        },4000);
+        }, 3000);
+    }
+
+    @Override
+    public MainClass getBinding() {
+        return MainClass.inflate(getLayoutInflater());
     }
 
     private void animateRocket() {
