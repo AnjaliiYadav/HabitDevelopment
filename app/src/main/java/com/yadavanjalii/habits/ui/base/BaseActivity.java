@@ -11,7 +11,7 @@ import androidx.databinding.ViewDataBinding;
  * Habit Development
  *
  * @author Anjali Yadav
- * @date 09/05/2022 1:41 PM
+ * @date 15/05/2022 1:41 PM
  */
 public abstract class BaseActivity<D extends ViewDataBinding> extends AppCompatActivity {
 

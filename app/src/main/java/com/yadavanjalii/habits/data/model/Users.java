@@ -22,7 +22,6 @@ import lombok.Setter;
 @Setter
 @Entity
 public class Users implements Serializable {
-    @PrimaryKey(autoGenerate = true)
     private int id;
     private String uid;
     private String name;
