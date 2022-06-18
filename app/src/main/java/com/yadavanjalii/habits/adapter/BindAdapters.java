@@ -15,6 +15,9 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+
+import kotlin.jvm.JvmStatic;
+
 /**
  * Habit Development
  *
@@ -22,6 +25,7 @@ import java.util.HashMap;
  * @date 14/05/2022 5:10 PM
  */
 public class BindAdapters {
+    @JvmStatic
     @BindingAdapter({"layout", "list", "click"})
     public static <T> void setRecyclerView(RecyclerView view, Integer layout, @Nullable ArrayList<T> list, RvClickListener click) {
         try {
@@ -38,7 +42,7 @@ public class BindAdapters {
     }
 
     @BindingAdapter("imageUrl")
-    public static void setSrc(ImageView view, @Nullable String url){
+    public static void setSrc(ImageView view, @Nullable String url) {
         Picasso.get().load(url).fit().into(view);
     }
 }

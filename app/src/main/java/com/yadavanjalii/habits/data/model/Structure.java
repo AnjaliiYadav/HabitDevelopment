@@ -1,7 +1,9 @@
 package com.yadavanjalii.habits.data.model;
 
 import androidx.annotation.Keep;
+import androidx.annotation.NonNull;
 import androidx.room.Entity;
+import androidx.room.PrimaryKey;
 
 import java.io.Serializable;
 
@@ -22,7 +24,10 @@ import lombok.Setter;
 @Getter
 @Setter
 @Keep
+@Entity(tableName = "structure")
 public class Structure implements Serializable {
+    @PrimaryKey
+    @NonNull
     public String ID;
     public String tableName;
     public String version;

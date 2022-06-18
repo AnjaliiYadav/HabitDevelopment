@@ -7,6 +7,9 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.widget.Toolbar;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.NavController;
+import androidx.navigation.NavHostController;
+import androidx.navigation.fragment.NavHostFragment;
 import androidx.navigation.ui.AppBarConfiguration;
 
 import com.yadavanjalii.habits.R;
@@ -25,17 +28,18 @@ public class HomeActivity extends BaseActivity<HomeClass> {
     private AppBarConfiguration mAppBarConfiguration;
     private Toolbar toolbar;
     public BaseViewModel baseViewModel;
+    private NavController navController;
 
     @Override
     protected void onStart() {
         super.onStart();
         toolbar = binding.toolbar;
         setSupportActionBar(toolbar);
-        Log.d("Dashboard", "onStart: Home1");
         setActionToolbarToggleEvent();
         setAppbarConfig();
-
+        setNavController();
         initViewModel();
+
     }
 
     @Override
@@ -71,19 +75,25 @@ public class HomeActivity extends BaseActivity<HomeClass> {
 
     private void initViewModel(){
         baseViewModel = new ViewModelProvider(this).get(BaseViewModel.class);
-
-        baseViewModel.getStructure().observe(this, result ->{
-
-            assert result.data != null;
-            List<Structure> temp = result.data;
-            Log.d("Dashboard", "initViewModel: "+ temp.get(1).toString()  );
-
-            Log.d("Dashboard", "initViewModel: "+result.data.get(0).ID);
-            Log.d("Dashboard", "initViewModel: "+result.data.get(0).lastUpdate);
-            Log.d("Dashboard", "initViewModel: "+result.data.get(0).tableName);
-            Log.d("Dashboard", "initViewModel: "+result.data.get(0).version);
-            Log.d("Dashboard", "initViewModel: "+result.data.get(0).active);
+        baseViewModel.getStructures().observe(this, result ->{
 
         });
+    }
+    
+    private void navigate(String id){
+        
+
+    }
+    private void setNavController(){
+        try {
+            NavHostFragment navHostFragment = (NavHostFragment) getSupportFragmentManager()
+                    .findFragmentById(R.id.fragment_container);
+
+            assert navHostFragment != null;
+            navController = navHostFragment.getNavController();
+
+        }catch (Exception e){
+
+        }
     }
 }

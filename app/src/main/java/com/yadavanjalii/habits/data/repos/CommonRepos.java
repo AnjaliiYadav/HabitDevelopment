@@ -23,7 +23,7 @@ import javax.inject.Singleton;
 
 import io.reactivex.Observable;
 @Singleton
-public class RemoteRepos {
+public class CommonRepos {
 
     public CollectionReference credits;
     public CollectionReference structure;
@@ -32,7 +32,7 @@ public class RemoteRepos {
 
 
     @Inject
-    public RemoteRepos(@Named(CREDITS) CollectionReference credits,
+    public CommonRepos(@Named(CREDITS) CollectionReference credits,
                        @Named(STRUCTURE) CollectionReference structure,
                        @Named(DASHBOARD) CollectionReference dashboard,
                        @Named(USERS) CollectionReference users) {
@@ -80,9 +80,7 @@ public class RemoteRepos {
                     if (task.isSuccessful()) {
                         QuerySnapshot snapshot = task.getResult();
                         if (!snapshot.isEmpty()) {
-                            Log.d("Dashboard", "getStructures: Repos  " + snapshot.size() );
                             List<Structure> result = snapshot.toObjects(Structure.class);
-                            Log.d("Dashboard", "getStructures: Repos  " + result);
                             emitter.onNext(Resource.success(result));
                         }
 
@@ -91,13 +89,10 @@ public class RemoteRepos {
                     emitter.onNext(Resource.error(failed.getMessage(), null));
                 });
             } catch (Exception e) {
-                Log.d("Dashboard", "getStructures: error " + e.getMessage());
                 emitter.onNext(Resource.error(e.getMessage(), null));
             }
         });
     }
-  //  public CollectionReference getStructures() {
-   /*     return structure;
-    }*/
+
 
 }

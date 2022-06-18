@@ -8,6 +8,7 @@ import java.io.Serializable;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.NonNull;
 import lombok.Setter;
 
 /**
@@ -22,11 +23,13 @@ import lombok.Setter;
 @Setter
 @Entity
 public class Users implements Serializable {
-    private int id;
-    private String uid;
-    private String name;
-    private String pwd;
-    private String email;
-    private String createdAt;
-    private String photoUrl;
+    @PrimaryKey
+    @NonNull
+    public int id;
+    public String uid;
+    public String name;
+    public String pwd;
+    public String email;
+    public String createdAt;
+    public String photoUrl;
 }

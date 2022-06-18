@@ -1,20 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
     <data class="DashboardClass">
+        <import type="android.view.View"/>
+        <variable
+            name="model"
+            type="com.yadavanjalii.habits.data.model.HomeModel" />
+        <variable
+            name="click"
+            type="View.OnClickListener" />
+
+        <variable
+            name="itemclick"
+            type="com.yadavanjalii.habits.RvClickListener" />
 
     </data>
 
-    <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".ui.dashboard.DashboardFragment">
 
-        <!-- TODO: Update blank fragment layout -->
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="@string/hello_blank_fragment" />
 
-    </FrameLayout>
+       <androidx.recyclerview.widget.RecyclerView
+           android:layout_width="match_parent"
+           android:layout_height="match_parent"
+           android:id="@+id/recycler"
+           app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+           app:spanCount="2"
+           list="@{model.items}"
+           click="@{itemclick}"
+           layout="@{@layout/dashboard_item_ui}"/>
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

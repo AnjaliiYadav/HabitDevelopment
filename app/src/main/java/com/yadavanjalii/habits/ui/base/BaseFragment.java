@@ -1,6 +1,7 @@
 package com.yadavanjalii.habits.ui.base;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,7 +26,6 @@ public abstract class BaseFragment<D extends ViewDataBinding, V extends ViewMode
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         dataBinding = DataBindingUtil.inflate(inflater, getLayoutRes(), container, false);
         return dataBinding.getRoot();
-        //viewModel = new ViewModelProvider(this).get(getViewModel());
     }
 
     @Override

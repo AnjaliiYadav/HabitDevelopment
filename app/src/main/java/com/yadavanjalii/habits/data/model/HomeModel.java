@@ -1,5 +1,7 @@
 package com.yadavanjalii.habits.data.model;
 
+import androidx.room.Entity;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 
@@ -11,7 +13,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public class HomeModel implements Serializable {
-    ArrayList<HomeItems> items;
+    public ArrayList<HomeItems> items;
 
     public HomeModel() {
         this.items = new ArrayList<>();

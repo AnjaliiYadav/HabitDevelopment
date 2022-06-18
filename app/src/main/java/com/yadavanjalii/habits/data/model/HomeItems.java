@@ -1,5 +1,9 @@
 package com.yadavanjalii.habits.data.model;
 
+import androidx.annotation.NonNull;
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+
 import java.io.Serializable;
 
 import lombok.AllArgsConstructor;
@@ -11,12 +15,16 @@ import lombok.Setter;
 @AllArgsConstructor
 @Getter
 @Setter
+@Entity(tableName = "dashboard_items")
 public class HomeItems implements Serializable {
-    private String title;
-    private String iconUrl;
-    private String description;
-    private String sequence;
-    private Boolean active;
-    private String id;
-    private String status;
+    public String title;
+    public String iconUrl;
+    public String description;
+    public String sequence;
+    public Boolean active;
+
+    @PrimaryKey
+    @NonNull
+    public String id;
+    public String status;
 }
