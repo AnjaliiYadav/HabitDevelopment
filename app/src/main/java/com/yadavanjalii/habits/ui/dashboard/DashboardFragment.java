@@ -1,7 +1,6 @@
 package com.yadavanjalii.habits.ui.dashboard;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 
 import androidx.annotation.NonNull;
@@ -10,11 +9,11 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.yadavanjalii.habits.R;
 import com.yadavanjalii.habits.RvClickListener;
-import com.yadavanjalii.habits.adapter.GlobalAdapter;
 import com.yadavanjalii.habits.data.model.HomeItems;
 import com.yadavanjalii.habits.data.model.HomeModel;
 import com.yadavanjalii.habits.databinding.DashboardClass;
 import com.yadavanjalii.habits.ui.base.BaseFragment;
+import com.yadavanjalii.habits.utils.Helper;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,7 +24,7 @@ import dagger.hilt.android.AndroidEntryPoint;
 public class DashboardFragment extends BaseFragment<DashboardClass, DashboardViewModel> implements
 View.OnClickListener{
     HomeModel model = new HomeModel();
-    private RvClickListener fragmentClickListener;
+    private RvClickListener<HomeModel> fragmentClickListener;
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
@@ -41,8 +40,8 @@ View.OnClickListener{
     private void displayItems() {
         viewModel.getItems().observe(getViewLifecycleOwner(), result ->{
             List<HomeItems> items =  result;
-
             model.items = (ArrayList<HomeItems>) items;
+            Helper.debug(model.items.stream().sequential().toString());
             setAdapters();
         });
     }
@@ -68,9 +67,11 @@ View.OnClickListener{
     private void setAdapters(){
         try {
             dataBinding.setModel(model);
+            dataBinding.setClick(this);
+            dataBinding.setItemclick(fragmentClickListener);
 
         }catch (Exception e){
-
+            Helper.debug(e.getMessage());
         }
     }
 

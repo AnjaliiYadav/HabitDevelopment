@@ -1,11 +1,15 @@
 package com.yadavanjalii.habits.adapter;
 
 
+import static com.yadavanjalii.habits.utils.Constants.TAG;
+
+import android.util.Log;
 import android.widget.ImageView;
 
 import androidx.databinding.BindingAdapter;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.rpc.Help;
 import com.squareup.picasso.Picasso;
 import com.yadavanjalii.habits.BR;
 import com.yadavanjalii.habits.RvClickListener;
@@ -29,15 +33,16 @@ public class BindAdapters {
     @BindingAdapter({"layout", "list", "click"})
     public static <T> void setRecyclerView(RecyclerView view, Integer layout, @Nullable ArrayList<T> list, RvClickListener click) {
         try {
+            Helper.debug("*************************************************** ");
             if (list != null) {
-                HashMap<Integer, T> brs = new HashMap<>();
-                brs.put(BR.itemclick, list.get(BR.itemclick));
+                HashMap<Integer, RvClickListener<T>> brs = new HashMap<>();
+                brs.put(BR.itemclick, click);
 
-                GlobalAdapter adapter = new GlobalAdapter(layout, list, BR.model, click, brs);
+                GlobalAdapter<T> adapter = new GlobalAdapter<T>(layout, list, BR.model, click, brs);
                 view.setAdapter(adapter);
             }
         } catch (Exception e) {
-            Helper.debug(e.getMessage());
+            Helper.debug(" inside error " + e.getMessage());
         }
     }
 

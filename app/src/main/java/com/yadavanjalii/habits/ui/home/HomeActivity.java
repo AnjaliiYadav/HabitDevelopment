@@ -81,8 +81,7 @@ public class HomeActivity extends BaseActivity<HomeClass> {
     }
     
     private void navigate(String id){
-        
-
+        navController.navigate(R.id.nav_dashboard);
     }
     private void setNavController(){
         try {
