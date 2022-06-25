@@ -21,7 +21,7 @@ import java.util.List;
  */
 @Dao
 public interface HomeItemsDao {
-    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insert(HomeItems items);
 
     @Update

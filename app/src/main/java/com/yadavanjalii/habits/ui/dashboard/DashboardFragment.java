@@ -1,7 +1,11 @@
 package com.yadavanjalii.habits.ui.dashboard;
 
+import static com.yadavanjalii.habits.utils.Constants.TAG;
+
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -24,7 +28,7 @@ import dagger.hilt.android.AndroidEntryPoint;
 public class DashboardFragment extends BaseFragment<DashboardClass, DashboardViewModel> implements
 View.OnClickListener{
     HomeModel model = new HomeModel();
-    private RvClickListener<HomeModel> fragmentClickListener;
+    private RvClickListener<HomeItems> fragmentClickListener;
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
@@ -39,10 +43,14 @@ View.OnClickListener{
 
     private void displayItems() {
         viewModel.getItems().observe(getViewLifecycleOwner(), result ->{
-            List<HomeItems> items =  result;
-            model.items = (ArrayList<HomeItems>) items;
-            Helper.debug(model.items.stream().sequential().toString());
-            setAdapters();
+           try {
+               List<HomeItems> items =  result;
+               model.items = (ArrayList<HomeItems>) items;
+               Helper.debug(model.items.stream().sequential().toString());
+               setAdapters();
+           }catch (Exception e){
+               Log.d(TAG, "displayItems: "+e.getMessage());
+           }
         });
     }
 
@@ -77,7 +85,11 @@ View.OnClickListener{
 
     private void setListeners(){
         fragmentClickListener = (view, item, position, adapter) -> {
-            //todo: switch based on item clicked
+            try {
+                Toast.makeText(getContext(), "You have clicked on "+item.title,Toast.LENGTH_LONG).show();
+            }catch (Exception e){
+                Log.d(TAG, "setListeners: "+e.getMessage());
+            }
 
         };
     }

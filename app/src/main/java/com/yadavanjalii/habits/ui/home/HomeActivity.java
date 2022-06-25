@@ -6,12 +6,16 @@ import android.view.Menu;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.widget.Toolbar;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.NavHostController;
+import androidx.navigation.Navigation;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.navigation.ui.AppBarConfiguration;
+import androidx.navigation.ui.NavigationUI;
 
+import com.google.android.material.navigation.NavigationView;
 import com.yadavanjalii.habits.R;
 import com.yadavanjalii.habits.data.model.Structure;
 import com.yadavanjalii.habits.databinding.HomeClass;
@@ -33,11 +37,23 @@ public class HomeActivity extends BaseActivity<HomeClass> {
     @Override
     protected void onStart() {
         super.onStart();
-        toolbar = binding.toolbar;
-        setSupportActionBar(toolbar);
+
+        setSupportActionBar(binding.appBarMain.toolbar);
+
+        DrawerLayout drawer = binding.drawerLayout;
+        NavigationView navigationView = binding.navView;
+        mAppBarConfiguration = new AppBarConfiguration.Builder(
+                R.id.nav_dashboard)
+                .setOpenableLayout(drawer)
+                .build();
+
+        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
+        NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
+        NavigationUI.setupWithNavController(navigationView, navController);
+
+       /* setAppbarConfig();
         setActionToolbarToggleEvent();
-        setAppbarConfig();
-        setNavController();
+        setNavController();*/
         initViewModel();
 
     }
@@ -60,11 +76,37 @@ public class HomeActivity extends BaseActivity<HomeClass> {
         actionBarDrawerToggle.syncState();
     }
 
+    @Override
+    public boolean onSupportNavigateUp() {
+        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
+        return NavigationUI.navigateUp(navController, mAppBarConfiguration)
+                || super.onSupportNavigateUp();
+    }
 
     private void setAppbarConfig() {
-        mAppBarConfiguration = new AppBarConfiguration.Builder()
+
+        NavHostFragment navHostFragment = (NavHostFragment) getSupportFragmentManager().findFragmentById(R.id.nav_host_fragment_content_main);
+        NavController navController = navHostFragment.getNavController();
+        NavigationView navView = findViewById(R.id.nav_view);
+        NavigationUI.setupWithNavController(navView, navController);
+
+        AppBarConfiguration appBarConfiguration =
+                new AppBarConfiguration.Builder(navController.getGraph())
+                        .setDrawerLayout(binding.drawerLayout)
+                        .build();
+
+       /* NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
+        mAppBarConfiguration = new AppBarConfiguration
+                .Builder()
                 .setOpenableLayout(binding.drawerLayout)
                 .build();
+
+
+       *//*AppBarConfiguration appBarConfiguration =
+               new AppBarConfiguration.Builder(navController.getGraph()).build();
+       Toolbar toolbar = findViewById(R.id.toolbar);*//*
+        NavigationUI.setupWithNavController(binding.toolbar, navController, mAppBarConfiguration);*/
+
     }
 
     @Override
@@ -80,19 +122,8 @@ public class HomeActivity extends BaseActivity<HomeClass> {
         });
     }
     
-    private void navigate(String id){
-        navController.navigate(R.id.nav_dashboard);
-    }
+
     private void setNavController(){
-        try {
-            NavHostFragment navHostFragment = (NavHostFragment) getSupportFragmentManager()
-                    .findFragmentById(R.id.fragment_container);
 
-            assert navHostFragment != null;
-            navController = navHostFragment.getNavController();
-
-        }catch (Exception e){
-
-        }
     }
 }

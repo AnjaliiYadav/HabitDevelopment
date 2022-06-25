@@ -23,20 +23,14 @@
         android:fitsSystemWindows="true"
         tools:openDrawer="start">
 
-        <com.google.android.material.appbar.AppBarLayout
-            android:id="@+id/app_bar"
+        <include
+            android:id="@+id/app_bar_main"
+            layout="@layout/app_bar_main"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <androidx.appcompat.widget.Toolbar
-                android:id="@+id/toolbar"
-                android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                android:background="?attr/colorPrimaryVariant" />
-        </com.google.android.material.appbar.AppBarLayout>
+            android:layout_height="match_parent" />
 
         <com.google.android.material.navigation.NavigationView
-            android:id="@+id/main_drawer"
+            android:id="@+id/nav_view"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_gravity="start"
@@ -44,14 +38,6 @@
             app:headerLayout="@layout/drawer_header"
             app:menu="@menu/main_drawer" />
 
-        <fragment
-            android:id="@+id/fragment_container"
-            android:name="androidx.navigation.fragment.NavHostFragment"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:defaultNavHost="true"
-            app:navGraph="@navigation/nav_graph" />
-
-
     </androidx.drawerlayout.widget.DrawerLayout>
+
 </layout>

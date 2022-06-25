@@ -3,13 +3,18 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/practice/HabitDevelopment/app/src/main/res/drawable/sample_change.xml" value="0.1" />
+        <entry key="..\:/practice/HabitDevelopment/app/src/main/res/drawable/status_bg.xml" value="0.1" />
         <entry key="..\:/practice/HabitDevelopment/app/src/main/res/layout/activity_home.xml" value="0.11574074074074074" />
         <entry key="..\:/practice/HabitDevelopment/app/src/main/res/layout/activity_main.xml" value="0.1" />
+        <entry key="..\:/practice/HabitDevelopment/app/src/main/res/layout/app_bar_main.xml" value="0.1" />
+        <entry key="..\:/practice/HabitDevelopment/app/src/main/res/layout/content_main.xml" value="0.1" />
         <entry key="..\:/practice/HabitDevelopment/app/src/main/res/layout/dashboard_item_ui.xml" value="0.11574074074074074" />
         <entry key="..\:/practice/HabitDevelopment/app/src/main/res/layout/drawer_header.xml" value="0.1" />
         <entry key="..\:/practice/HabitDevelopment/app/src/main/res/layout/fragment_challenges.xml" value="0.13020833333333334" />
         <entry key="..\:/practice/HabitDevelopment/app/src/main/res/layout/fragment_conn.xml" value="0.13020833333333334" />
         <entry key="..\:/practice/HabitDevelopment/app/src/main/res/layout/fragment_dashboard.xml" value="0.1" />
+        <entry key="..\:/practice/HabitDevelopment/app/src/main/res/layout/main_content.xml" value="0.1" />
         <entry key="..\:/practice/HabitDevelopment/app/src/main/res/menu/main_drawer.xml" value="0.1" />
         <entry key="..\:/practice/HabitDevelopment/app/src/main/res/menu/main_menu.xml" value="0.1" />
       </map>

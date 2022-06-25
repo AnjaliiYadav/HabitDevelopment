@@ -13,6 +13,7 @@
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimary</item>
         <item name="android:windowLightStatusBar">true</item>
 
+
         <!-- Customize your theme here. -->
         <item name="android:windowLightNavigationBar">true</item>
     </style>
@@ -32,6 +33,7 @@
         <item name="android:windowLightStatusBar">true</item>
 
        <item name="android:windowLightNavigationBar">true</item>
+
     </style>
 
 
